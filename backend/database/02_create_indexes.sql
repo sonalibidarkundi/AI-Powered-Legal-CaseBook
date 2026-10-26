@@ -1,0 +1,43 @@
+-- ============================================================================
+-- SCRIPT: 02_create_indexes.sql
+-- PROJECT: AI-Powered Advocate Legal CaseBook (Stage 3)
+-- DESCRIPTION: Creates performance and foreign-key indexes.
+-- PURPOSE: In Oracle, unindexed foreign keys can cause full-table lock contention
+--          during parent row updates/deletes. These indexes ensure optimum join
+--          performance and prevent locking bottlenecks.
+-- ============================================================================
+
+-- 1. CLIENTS Foreign Key Indexes
+CREATE INDEX IDX_CLIENTS_USER_ID ON CLIENTS(USER_ID);
+
+-- 2. STAFF Foreign Key Indexes
+CREATE INDEX IDX_STAFF_USER_ID ON STAFF(USER_ID);
+
+-- 3. CASES Foreign Key & Lookup Indexes
+CREATE INDEX IDX_CASES_CREATED_BY ON CASES(CREATED_BY);
+CREATE INDEX IDX_CASES_STATUS ON CASES(CASE_STATUS);
+
+-- 4. CASE_CLIENTS Lookup Indexes (PK covers (CASE_ID, CLIENT_ID); index CLIENT_ID for reverse lookup)
+CREATE INDEX IDX_CC_CLIENT_ID ON CASE_CLIENTS(CLIENT_ID);
+
+-- 5. CASE_ASSIGNMENTS Foreign Key Indexes
+CREATE INDEX IDX_CA_CASE_ID ON CASE_ASSIGNMENTS(CASE_ID);
+CREATE INDEX IDX_CA_STAFF_ID ON CASE_ASSIGNMENTS(STAFF_ID);
+CREATE INDEX IDX_CA_ASSIGNED_BY ON CASE_ASSIGNMENTS(ASSIGNED_BY);
+CREATE INDEX IDX_CA_STATUS ON CASE_ASSIGNMENTS(ASSIGNMENT_STATUS);
+
+-- 6. DOCUMENTS Foreign Key Indexes
+CREATE INDEX IDX_DOCS_CASE_ID ON DOCUMENTS(CASE_ID);
+CREATE INDEX IDX_DOCS_UPLOADED_BY ON DOCUMENTS(UPLOADED_BY);
+
+-- 7. HEARINGS Foreign Key & Schedule Date Indexes
+CREATE INDEX IDX_HEARINGS_CASE_ID ON HEARINGS(CASE_ID);
+CREATE INDEX IDX_HEARINGS_DATE ON HEARINGS(HEARING_DATE);
+CREATE INDEX IDX_HEARINGS_STATUS ON HEARINGS(HEARING_STATUS);
+
+-- 8. AUDIT_LOGS Actor & Timestamp Query Indexes
+CREATE INDEX IDX_AUDIT_ACTOR_USER ON AUDIT_LOGS(ACTOR_USER_ID);
+CREATE INDEX IDX_AUDIT_ACTION_TYPE ON AUDIT_LOGS(ACTION_TYPE);
+CREATE INDEX IDX_AUDIT_CREATED_AT ON AUDIT_LOGS(CREATED_AT DESC);
+
+COMMIT;

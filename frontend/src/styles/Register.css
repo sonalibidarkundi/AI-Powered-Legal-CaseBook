@@ -1,0 +1,546 @@
+/* ============================================================
+   Legal CaseBook - Registration Page Styles (Register.css)
+   Clean, prestigious Legal-Tech Aesthetic
+   Matching Login Page:
+   - Primary: #172B4D (Deep Navy)
+   - Accent: #B99A5B (Muted Gold)
+   - Background: #FFFFFF (Crisp White)
+   - Text: #333333 (Dark Grey)
+   - Border: #D9DEE7 (Light Grey)
+   ============================================================ */
+
+.register-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  position: relative;
+}
+
+/* ============================================================
+   1. Header Section (Consistent with Login)
+   ============================================================ */
+.register-header {
+  height: 72px;
+  border-bottom: 1px solid var(--color-border);
+  background-color: #FFFFFF;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.register-header-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-link:hover .brand-title {
+  color: var(--color-primary-hover);
+}
+
+.header-action-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.header-action-link a {
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-left: 6px;
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.header-action-link a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* ============================================================
+   2. Main Container
+   ============================================================ */
+.register-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  background: radial-gradient(circle at 10% 20%, rgba(185, 154, 91, 0.04) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(23, 43, 77, 0.03) 0%, transparent 50%),
+              #FFFFFF;
+}
+
+.register-content-wrapper {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   3. Registration Form Card
+   ============================================================ */
+.register-card {
+  width: 100%;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition: box-shadow var(--transition-normal);
+}
+
+.register-card-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.register-card-title {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.3px;
+  margin-bottom: 8px;
+}
+
+.register-card-subtitle {
+  font-size: 15px;
+  color: var(--color-text-muted);
+}
+
+/* Form Grid & Groups */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form-row-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.register-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.register-form-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.label-required {
+  color: var(--color-accent);
+  margin-left: 2px;
+}
+
+.register-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.register-input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--color-text-light);
+  pointer-events: none;
+}
+
+.register-input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  font-size: 15px;
+  color: var(--color-text-main);
+  background-color: #FFFFFF;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.register-input.has-left-icon {
+  padding-left: 42px;
+}
+
+.register-input.has-right-toggle {
+  padding-right: 44px;
+}
+
+.register-input:hover {
+  border-color: var(--color-border-hover);
+}
+
+.register-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(23, 43, 77, 0.12);
+}
+
+.register-input.is-invalid {
+  border-color: var(--color-error);
+  background-color: #FFFBFB;
+}
+
+.register-input.is-invalid:focus {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px rgba(222, 53, 11, 0.15);
+}
+
+.register-error-msg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--color-error);
+  margin-top: 2px;
+}
+
+/* ============================================================
+   4. Account Type Selection (Accessible Radio Cards)
+   ============================================================ */
+.account-type-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.account-type-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.account-type-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: #FAFBFD;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+  user-select: none;
+}
+
+.account-type-card:hover {
+  border-color: var(--color-accent);
+  background-color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.account-type-card.is-selected {
+  border-color: var(--color-primary);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 2px var(--color-primary), 0 4px 12px rgba(23, 43, 77, 0.08);
+}
+
+.account-type-card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.account-type-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.account-type-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary-subtle);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.account-type-card.is-selected .account-type-icon-box {
+  background-color: var(--color-primary);
+  color: var(--color-accent);
+}
+
+.custom-radio-indicator {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--color-border-hover);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  transition: all var(--transition-fast);
+}
+
+.account-type-card.is-selected .custom-radio-indicator {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+}
+
+.custom-radio-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+}
+
+.account-type-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.account-type-desc {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-text-muted);
+}
+
+.account-type-badge {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  background-color: #F1F4F8;
+  color: var(--color-text-muted);
+  width: fit-content;
+}
+
+.account-type-card.is-selected .account-type-badge {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent-hover);
+}
+
+/* ============================================================
+   5. Password Requirements Checklist
+   ============================================================ */
+.password-requirements-box {
+  background-color: #F8FAFC;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  margin-top: 4px;
+}
+
+.requirements-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.requirements-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.requirement-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.requirement-item.is-valid {
+  color: var(--color-success);
+  font-weight: 500;
+}
+
+.req-icon {
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   6. Role Security Notice (Legal Compliance)
+   ============================================================ */
+.role-security-callout {
+  display: flex;
+  gap: 12px;
+  background-color: #FAF8F3;
+  border: 1px solid var(--color-accent-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #5C4A28;
+}
+
+.security-callout-icon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.security-callout-content strong {
+  color: #382B14;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* ============================================================
+   7. Submit Button & Form Actions
+   ============================================================ */
+.btn-register-submit {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #FFFFFF;
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 4px rgba(23, 43, 77, 0.18);
+  transition: all var(--transition-fast);
+  margin-top: 6px;
+}
+
+.btn-register-submit:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  box-shadow: 0 4px 12px rgba(23, 43, 77, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-register-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-register-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   8. Bottom Navigation & Status
+   ============================================================ */
+.register-footer-nav {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  border-top: 1px solid #EEF1F5;
+  padding-top: 20px;
+}
+
+.register-footer-nav a {
+  margin-left: 6px;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.register-footer-nav a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* ============================================================
+   9. Responsive Design
+   ============================================================ */
+@media (max-width: 768px) {
+  .register-card {
+    padding: 32px 24px;
+  }
+
+  .register-card-title {
+    font-size: 24px;
+  }
+
+  .form-row-two-col {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .account-type-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .account-type-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+  }
+
+  .account-type-header {
+    margin-bottom: 0;
+  }
+
+  .account-type-details {
+    flex: 1;
+  }
+
+  .requirements-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .register-main {
+    padding: 24px 16px;
+  }
+
+  .register-card {
+    padding: 24px 18px;
+    border-radius: var(--radius-md);
+  }
+
+  .register-card-title {
+    font-size: 22px;
+  }
+
+  .register-card-subtitle {
+    font-size: 14px;
+  }
+
+  .header-action-link {
+    display: none;
+  }
+}

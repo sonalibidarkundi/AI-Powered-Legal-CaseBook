@@ -1,0 +1,326 @@
+/* ============================================================
+   Legal CaseBook - Core Design System & Global Styles
+   Design tokens aligned with Legal Tech UI specifications:
+   - Background: #FFFFFF
+   - Primary: #172B4D (Navy Blue)
+   - Accent: #B99A5B (Muted Gold)
+   - Text: #333333 (Dark Grey)
+   - Input borders: #D9DEE7 (Light Grey)
+   ============================================================ */
+
+:root {
+  /* Brand Color Tokens */
+  --color-bg: #FFFFFF;
+  --color-primary: #172B4D;
+  --color-primary-hover: #0F1E36;
+  --color-primary-subtle: #F4F6F9;
+  
+  --color-accent: #B99A5B;
+  --color-accent-hover: #9E8146;
+  --color-accent-light: #FAF6EF;
+  --color-accent-border: #E8DCC4;
+  
+  --color-text-main: #333333;
+  --color-text-muted: #5E6C84;
+  --color-text-light: #8993A4;
+  
+  --color-border: #D9DEE7;
+  --color-border-hover: #C1C7D0;
+  --color-border-focus: #172B4D;
+
+  --color-card-bg: #FFFFFF;
+  
+  /* Status & Feedback Colors */
+  --color-error: #DE350B;
+  --color-error-bg: #FFEBE6;
+  --color-error-border: #FFBDAD;
+
+  --color-info: #0747A6;
+  --color-info-bg: #DEEBFF;
+  --color-info-border: #B3D4FF;
+
+  --color-success: #00875A;
+  --color-success-bg: #E3FCEF;
+  --color-success-border: #ABF5D1;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-serif: 'Cinzel', Georgia, Cambria, 'Times New Roman', serif;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(23, 43, 77, 0.08);
+  --shadow-subtle: 0 4px 16px -2px rgba(23, 43, 77, 0.08), 0 2px 6px -1px rgba(23, 43, 77, 0.04);
+  --shadow-card: 0 12px 32px -4px rgba(23, 43, 77, 0.12), 0 4px 12px -2px rgba(23, 43, 77, 0.06);
+  --shadow-modal: 0 20px 48px -6px rgba(23, 43, 77, 0.22), 0 8px 18px -4px rgba(23, 43, 77, 0.12);
+
+  /* Border Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, button, select, textarea {
+  font: inherit;
+}
+
+/* Accessible focus visible ring */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   SHARED BUTTON DESIGN SYSTEM
+   Palette:
+   - Primary Navy: #172B4D (Hover: #0F1E36)
+   - Muted Gold: #B99A5B (Hover: #A48545)
+   - White: #FFFFFF
+   - Page Background: #F7F8FA
+   - Border: #E5E9F0
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+}
+
+.btn:focus-visible {
+  outline: 2px solid #B99A5B;
+  outline-offset: 2px;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+/* 1. PRIMARY BUTTONS
+   Examples: Login, Create Account, Generate AI Summary, Save Changes, Submit Research, Upload Document
+   Navy blue background, white text, comfortable padding, rounded corners, medium font weight, subtle hover. */
+.btn-primary,
+.btn-submit-primary,
+.btn-register-submit,
+.btn-action-primary {
+  background-color: #172B4D;
+  color: #FFFFFF !important;
+  border-color: #172B4D;
+  box-shadow: 0 2px 4px rgba(23, 43, 77, 0.14);
+}
+
+.btn-primary:hover:not(:disabled),
+.btn-submit-primary:hover:not(:disabled),
+.btn-register-submit:hover:not(:disabled),
+.btn-action-primary:hover:not(:disabled) {
+  background-color: #0F1E36;
+  border-color: #0F1E36;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(23, 43, 77, 0.22);
+  transform: translateY(-1px);
+}
+
+/* 2. SECONDARY BUTTONS
+   Examples: View All, View Details, Cancel, Back, View Case
+   White background, navy text, subtle border (#E5E9F0), smooth hover. */
+.btn-secondary,
+.btn-secondary-action,
+.btn-outline-small,
+.btn-action-secondary {
+  background-color: #FFFFFF;
+  color: #172B4D !important;
+  border: 1px solid #E5E9F0;
+  box-shadow: 0 1px 2px rgba(23, 43, 77, 0.04);
+}
+
+.btn-secondary:hover:not(:disabled),
+.btn-secondary-action:hover:not(:disabled),
+.btn-outline-small:hover:not(:disabled),
+.btn-action-secondary:hover:not(:disabled) {
+  background-color: #F7F8FA;
+  border-color: #CBD5E1;
+  color: #172B4D !important;
+  box-shadow: 0 2px 6px rgba(23, 43, 77, 0.08);
+  transform: translateY(-1px);
+}
+
+/* 3. ACCENT BUTTONS
+   Examples: Generate AI Summary, Review Summary, Download Report
+   Muted gold (#B99A5B) used sparingly for high-value AI features. */
+.btn-accent,
+.btn-accent-small,
+.btn-ai-summary {
+  background: linear-gradient(135deg, #B99A5B 0%, #A48545 100%);
+  color: #FFFFFF !important;
+  border: 1px solid #B99A5B;
+  box-shadow: 0 2px 6px rgba(185, 154, 91, 0.25);
+}
+
+.btn-accent:hover:not(:disabled),
+.btn-accent-small:hover:not(:disabled),
+.btn-ai-summary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #A48545 0%, #8E7134 100%);
+  border-color: #8E7134;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(185, 154, 91, 0.35);
+  transform: translateY(-1px);
+}
+
+/* 4. DESTRUCTIVE ACTIONS
+   Examples: Delete, Terminate Session
+   Clear warning style with red tones. */
+.btn-danger,
+.btn-danger-small,
+.btn-topbar-signout,
+.btn-signout {
+  background-color: #FFF1F2;
+  color: #DC2626 !important;
+  border: 1px solid #FECDD3;
+}
+
+.btn-danger:hover:not(:disabled),
+.btn-danger-small:hover:not(:disabled),
+.btn-topbar-signout:hover:not(:disabled),
+.btn-signout:hover:not(:disabled) {
+  background-color: #DC2626;
+  color: #FFFFFF !important;
+  border-color: #DC2626;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.22);
+  transform: translateY(-1px);
+}
+
+/* 5. BUTTON SIZES & METRICS */
+/* Large / Form Submit Buttons */
+.btn-lg,
+.btn-submit-primary,
+.btn-register-submit {
+  height: 46px;
+  padding: 0 24px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* Medium / Standard Action Buttons */
+.btn-md,
+.btn-primary,
+.btn-secondary,
+.btn-accent,
+.btn-secondary-action {
+  height: 38px;
+  padding: 0 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  border-radius: 7px;
+}
+
+/* Small / Table Row Buttons */
+.btn-sm,
+.btn-primary-small,
+.btn-outline-small,
+.btn-accent-small,
+.btn-danger-small {
+  height: 32px;
+  padding: 0 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+/* Icon alignment inside buttons */
+.btn svg,
+.btn-primary svg,
+.btn-secondary svg,
+.btn-accent svg,
+.btn-danger svg,
+.btn-primary-small svg,
+.btn-outline-small svg,
+.btn-secondary-action svg {
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+/* Loading Spinner inside buttons (Does NOT cause size jump) */
+.btn-spinner {
+  animation: btnSpin 0.75s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes btnSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.btn-loading {
+  position: relative;
+  cursor: wait;
+}
+
+/* Mobile responsiveness: buttons fit screen smoothly */
+@media (max-width: 640px) {
+  .btn-submit-primary,
+  .btn-register-submit {
+    width: 100%;
+  }
+}

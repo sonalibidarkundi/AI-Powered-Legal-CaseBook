@@ -1,0 +1,11 @@
+# Legal CaseBook - Backend Requirements (Stage 3)
+# Python Flask API & Oracle Database Driver
+
+flask>=3.0.0
+flask-cors>=4.0.0
+python-dotenv>=1.0.0
+oracledb>=2.0.0
+werkzeug>=3.0.0
+
+# Future Stage Dependencies:
+# groq>=0.4.0             # Will be added for AI document & case analysis

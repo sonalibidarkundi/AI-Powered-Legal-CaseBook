@@ -1,0 +1,724 @@
+/* ============================================================
+   Legal CaseBook - Login Page Styles (Login.css)
+   Clean, prestigious Legal-Tech Aesthetic
+   Palette:
+   - Primary: #172B4D (Deep Navy)
+   - Accent: #B99A5B (Muted Gold)
+   - Background: #FFFFFF (Crisp White)
+   - Text: #333333 (Dark Grey)
+   - Border: #D9DEE7 (Light Grey)
+   ============================================================ */
+
+.login-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  position: relative;
+}
+
+/* ============================================================
+   1. Header Section
+   ============================================================ */
+.login-header {
+  height: 72px;
+  border-bottom: 1px solid var(--color-border);
+  background-color: #FFFFFF;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.header-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, #172B4D 0%, #101F38 100%);
+  color: var(--color-accent);
+  box-shadow: 0 2px 6px rgba(23, 43, 77, 0.15);
+}
+
+.brand-title {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--color-primary);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.workspace-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-primary);
+  background-color: var(--color-primary-subtle);
+  border: 1px solid var(--color-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.2px;
+}
+
+.workspace-badge-icon {
+  color: var(--color-accent);
+}
+
+/* ============================================================
+   2. Main Layout (Left Section & Right Section)
+   ============================================================ */
+.login-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  background: radial-gradient(circle at 10% 20%, rgba(185, 154, 91, 0.04) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(23, 43, 77, 0.03) 0%, transparent 50%),
+              #FFFFFF;
+}
+
+.login-content-grid {
+  width: 100%;
+  max-width: 1140px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+
+/* ============================================================
+   3. Left Section (Hero / Brand Identity)
+   ============================================================ */
+.left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-right: 20px;
+}
+
+.left-headline {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  line-height: 1.18;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.5px;
+}
+
+.left-headline .gold-text {
+  color: var(--color-accent);
+}
+
+.left-description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  max-width: 480px;
+}
+
+/* Trust Pill Badges */
+.trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.trust-badge-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-primary);
+  background-color: #FAFBFD;
+  border: 1px solid var(--color-border);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.trust-badge-item .gold-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+}
+
+/* Illustration Container */
+.illustration-container {
+  margin-top: 10px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.illustration-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.legal-svg-canvas {
+  width: 100%;
+  height: auto;
+  max-height: 290px;
+  filter: drop-shadow(0 8px 24px rgba(23, 43, 77, 0.06));
+}
+
+/* ============================================================
+   4. Right Section (Login Card & Form)
+   ============================================================ */
+.right-section {
+  display: flex;
+  justify-content: center;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 450px;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.card-header {
+  margin-bottom: 24px;
+}
+
+.card-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+
+.card-subtitle {
+  font-size: 15px;
+  color: var(--color-text-muted);
+}
+
+/* Notification Banners */
+.login-banner {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  line-height: 1.45;
+  margin-bottom: 20px;
+  animation: fadeIn 200ms ease-in-out;
+}
+
+.login-banner.info {
+  background-color: #F3F6FA;
+  border: 1px solid #D1DDEB;
+  color: var(--color-primary);
+}
+
+.login-banner.info .banner-icon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.login-banner.error {
+  background-color: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
+  color: var(--color-error);
+}
+
+.login-banner.error .banner-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.banner-content strong {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+/* Form Styles */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.form-input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  font-size: 15px;
+  color: var(--color-text-main);
+  background-color: #FFFFFF;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input.has-toggle {
+  padding-right: 46px;
+}
+
+.form-input:hover {
+  border-color: var(--color-border-hover);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(23, 43, 77, 0.12);
+}
+
+.form-input.is-invalid {
+  border-color: var(--color-error);
+  background-color: #FFFBFB;
+}
+
+.form-input.is-invalid:focus {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px rgba(222, 53, 11, 0.15);
+}
+
+.input-icon-btn {
+  position: absolute;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.input-icon-btn:hover {
+  color: var(--color-primary);
+  background-color: rgba(23, 43, 77, 0.05);
+}
+
+.form-error-msg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--color-error);
+  margin-top: 2px;
+}
+
+/* Forgot Password Row */
+.form-options-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -6px;
+}
+
+.link-subtle {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.link-subtle:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
+/* Sign In Button */
+.btn-submit-primary {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #FFFFFF;
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 4px rgba(23, 43, 77, 0.18);
+  transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-submit-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  box-shadow: 0 4px 12px rgba(23, 43, 77, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-submit-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-submit-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Button Loading Spinner */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #FFFFFF;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Bottom Card Link */
+.card-footer-link {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  border-top: 1px solid #EEF1F5;
+  padding-top: 20px;
+}
+
+.btn-link-action {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.btn-link-action:hover {
+  color: var(--color-primary);
+}
+
+/* Backend Status Pill */
+.backend-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  background-color: #F8FAFC;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.status-dot.online {
+  background-color: var(--color-success);
+  box-shadow: 0 0 0 2px rgba(0, 135, 90, 0.2);
+}
+
+.status-dot.offline {
+  background-color: #999;
+}
+
+.status-dot.checking {
+  background-color: var(--color-accent);
+}
+
+/* ============================================================
+   5. Footer Section
+   ============================================================ */
+.login-footer {
+  border-top: 1px solid var(--color-border);
+  background-color: #FFFFFF;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-inner {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+  flex-wrap: wrap;
+}
+
+.footer-divider {
+  color: var(--color-border);
+}
+
+.footer-link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.footer-link-btn:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* ============================================================
+   6. Modal Dialog Styles
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 30, 54, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 200ms ease-out;
+}
+
+.modal-container {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 480px;
+  padding: 32px;
+  box-shadow: var(--shadow-modal);
+  position: relative;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-light);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background-color: #F4F6F9;
+  color: var(--color-primary);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.modal-icon-badge {
+  flex-shrink: 0;
+}
+
+.modal-icon-badge.navy {
+  color: var(--color-primary);
+}
+
+.modal-icon-badge.gold {
+  color: var(--color-accent);
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.modal-body {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--color-text-main);
+  margin-bottom: 24px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-modal-primary {
+  height: 40px;
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast);
+}
+
+.btn-modal-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* ============================================================
+   7. Responsive Design (Tablets & Mobile Devices)
+   ============================================================ */
+@media (max-width: 968px) {
+  .login-content-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .left-section {
+    padding-right: 0;
+    text-align: center;
+    align-items: center;
+  }
+
+  .left-headline {
+    font-size: 34px;
+  }
+
+  .left-description {
+    max-width: 540px;
+  }
+
+  .trust-badges {
+    justify-content: center;
+  }
+
+  .illustration-container {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 580px) {
+  .login-header {
+    height: 64px;
+  }
+
+  .header-inner {
+    padding: 0 16px;
+  }
+
+  .brand-title {
+    font-size: 16px;
+  }
+
+  .workspace-badge {
+    font-size: 11.5px;
+    padding: 4px 10px;
+  }
+
+  .login-main {
+    padding: 24px 16px;
+  }
+
+  .left-headline {
+    font-size: 26px;
+  }
+
+  .left-description {
+    font-size: 15px;
+  }
+
+  .illustration-container {
+    display: none; /* Hide decorative graphic on very small screens to avoid clutter */
+  }
+
+  .login-card {
+    padding: 24px 20px;
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .card-title {
+    font-size: 22px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .footer-divider {
+    display: none;
+  }
+}
