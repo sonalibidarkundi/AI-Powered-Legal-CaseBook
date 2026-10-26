@@ -44,7 +44,10 @@ from document_extractor import (
 
 client_bp = Blueprint("client", __name__, url_prefix="/api/client")
 
-UPLOAD_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "uploads", "documents"))
+if os.getenv("VERCEL") == "1":
+    UPLOAD_DIR = "/tmp/uploads/documents"
+else:
+    UPLOAD_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "uploads", "documents"))
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 ALLOWED_EXTENSIONS = {".pdf", ".docx", ".txt"}

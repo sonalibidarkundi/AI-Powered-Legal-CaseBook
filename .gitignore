@@ -26,7 +26,7 @@ backend/__pycache__/
 # Local databases
 *.db
 backend/*.db
-backend/database/*.db
+!backend/database/casebook.db
 *.sqlite
 *.sqlite3
 

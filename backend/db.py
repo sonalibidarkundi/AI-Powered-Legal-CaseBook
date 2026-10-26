@@ -24,8 +24,24 @@ from dotenv import load_dotenv
 # Load environment configuration
 load_dotenv()
 
-DB_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "database"))
-DB_FILE = os.path.join(DB_DIR, "casebook.db")
+import shutil
+
+# Check if running in Vercel Serverless environment
+IS_VERCEL = os.getenv("VERCEL") == "1"
+
+if IS_VERCEL:
+    DB_DIR = "/tmp/database"
+    DB_FILE = os.path.join(DB_DIR, "casebook.db")
+    os.makedirs(DB_DIR, exist_ok=True)
+    bundled_db = os.path.abspath(os.path.join(os.path.dirname(__file__), "database", "casebook.db"))
+    if not os.path.exists(DB_FILE) and os.path.exists(bundled_db):
+        try:
+            shutil.copy2(bundled_db, DB_FILE)
+        except Exception:
+            pass
+else:
+    DB_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "database"))
+    DB_FILE = os.path.join(DB_DIR, "casebook.db")
 
 SCHEMA_SQL = """
 CREATE TABLE IF NOT EXISTS USERS (
