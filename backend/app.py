@@ -81,6 +81,7 @@ DEBUG = os.getenv("FLASK_DEBUG", "1") == "1"
 # ============================================================================
 
 @app.route("/", methods=["GET"])
+@app.route("/api", methods=["GET"])
 def index():
     return jsonify({
         "service": "AI-Powered Advocate Legal CaseBook API",
@@ -464,6 +465,15 @@ def not_found(error):
         "error": "Not Found",
         "message": "The requested API endpoint does not exist."
     }), 404
+
+
+@app.errorhandler(405)
+def method_not_allowed(error):
+    return jsonify({
+        "error": "Method Not Allowed",
+        "message": "The requested HTTP method is not supported by this API endpoint.",
+        "code": "METHOD_NOT_ALLOWED"
+    }), 405
 
 
 @app.errorhandler(500)

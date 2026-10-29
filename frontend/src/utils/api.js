@@ -44,6 +44,13 @@ export async function safeParseResponse(response) {
     };
   }
 
+  if (response.status === 405) {
+    return {
+      error: 'HTTP 405 Method Not Allowed: The API server received this request at a route that does not accept the HTTP method. Please check Vercel API routing.',
+      code: 'METHOD_NOT_ALLOWED',
+    };
+  }
+
   return {
     error: text || `Request completed with status ${response.status}`,
     code: `HTTP_${response.status}`,
