@@ -36,27 +36,36 @@ load_dotenv()
 app = Flask(__name__)
 
 # 3. Secure Session Configuration
+is_secure_env = (os.getenv("FLASK_ENV") == "production") or (os.getenv("VERCEL") == "1")
 app.secret_key = os.getenv("SECRET_KEY", "legal-casebook-dev-stage4-secret-key-replace-in-prod")
 app.config.update(
     SESSION_COOKIE_NAME="legal_casebook_session",
     SESSION_COOKIE_HTTPONLY=True,       # Prevents client-side JavaScript access (XSS mitigation)
-    SESSION_COOKIE_SAMESITE="Lax",      # Balances usability and CSRF mitigation
-    SESSION_COOKIE_SECURE=(os.getenv("FLASK_ENV") == "production"),  # HTTPS in production
+    SESSION_COOKIE_SAMESITE="None" if os.getenv("CROSS_ORIGIN_COOKIES") == "1" else "Lax",
+    SESSION_COOKIE_SECURE=True if (is_secure_env or os.getenv("CROSS_ORIGIN_COOKIES") == "1") else False,
     PERMANENT_SESSION_LIFETIME=timedelta(hours=8)
 )
 
 # 4. CORS with Credential Support for React Frontend
-# Note: When cookies/credentials are transmitted, origin cannot be wildcard '*'
+# Supports localhost, any Vercel deployment preview/production URL, and optional custom FRONTEND_URL
+ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:5000",
+    "http://127.0.0.1:5000",
+    r"^https:\/\/.*\.vercel\.app$",
+    r"^https:\/\/.*\.netlify\.app$",
+    r"^https:\/\/.*\.onrender\.com$",
+]
+custom_frontend_url = os.getenv("FRONTEND_URL")
+if custom_frontend_url:
+    ALLOWED_ORIGINS.append(custom_frontend_url.strip().rstrip("/"))
+
 CORS(
     app,
     supports_credentials=True,
     resources={r"/api/*": {
-        "origins": [
-            "http://localhost:5173",
-            "http://127.0.0.1:5173",
-            "http://localhost:5000",
-            "http://127.0.0.1:5000"
-        ],
+        "origins": ALLOWED_ORIGINS,
         "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         "allow_headers": ["Content-Type", "X-CSRF-Token", "Authorization"]
     }}

@@ -2,10 +2,19 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "node build.cjs",
   "outputDirectory": "dist",
+  "functions": {
+    "api/index.py": {
+      "includeFiles": "backend/**"
+    }
+  },
   "rewrites": [
     {
+      "source": "/api",
+      "destination": "/api/index"
+    },
+    {
       "source": "/api/(.*)",
-      "destination": "/api/index.py"
+      "destination": "/api/index"
     },
     {
       "source": "/(.*)",

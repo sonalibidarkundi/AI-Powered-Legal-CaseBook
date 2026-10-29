@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { apiUrl, safeParseResponse } from '../utils/api';
 
 /**
  * AuthContext
@@ -26,18 +27,18 @@ export function AuthProvider({ children }) {
     async function initializeAuth() {
       try {
         // 1. Fetch initial anti-CSRF token
-        const csrfRes = await fetch('/api/auth/csrf', { credentials: 'include' });
+        const csrfRes = await fetch(apiUrl('/api/auth/csrf'), { credentials: 'include' });
         if (csrfRes.ok) {
-          const csrfData = await csrfRes.json();
+          const csrfData = await safeParseResponse(csrfRes);
           if (isMounted && csrfData.csrf_token) {
             setCsrfToken(csrfData.csrf_token);
           }
         }
 
         // 2. Check if a valid session cookie exists
-        const meRes = await fetch('/api/auth/me', { credentials: 'include' });
+        const meRes = await fetch(apiUrl('/api/auth/me'), { credentials: 'include' });
         if (meRes.ok) {
-          const meData = await meRes.json();
+          const meData = await safeParseResponse(meRes);
           if (isMounted && meData.authenticated && meData.user) {
             setUser(meData.user);
             if (meData.csrf_token) {
@@ -63,7 +64,7 @@ export function AuthProvider({ children }) {
   // Login handler
   const login = async (email, password) => {
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(apiUrl('/api/auth/login'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,7 +74,7 @@ export function AuthProvider({ children }) {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json();
+      const data = await safeParseResponse(response);
 
       if (response.ok && data.user) {
         setUser(data.user);
@@ -91,7 +92,7 @@ export function AuthProvider({ children }) {
     } catch (err) {
       return {
         success: false,
-        error: 'Unable to connect to the authentication server. Please check that Flask is running.',
+        error: `Unable to connect to the authentication server (${err.message || 'connection failed'}). Please check that Flask is running.`,
       };
     }
   };
@@ -99,7 +100,7 @@ export function AuthProvider({ children }) {
   // Register handler
   const register = async (formData) => {
     try {
-      const response = await fetch('/api/auth/register', {
+      const response = await fetch(apiUrl('/api/auth/register'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -109,9 +110,9 @@ export function AuthProvider({ children }) {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const data = await safeParseResponse(response);
 
-      if (response.ok) {
+      if (response.ok && !data.code?.startsWith('ROUTING_MISMATCH') && !data.code?.startsWith('SERVER_ERROR')) {
         return { success: true, message: data.message, user: data.user };
       } else {
         return {
@@ -123,7 +124,7 @@ export function AuthProvider({ children }) {
     } catch (err) {
       return {
         success: false,
-        error: 'Network error connecting to registration service. Please try again.',
+        error: `Network error connecting to registration service (${err.message || 'connection failed'}). Please check connection and try again.`,
       };
     }
   };
@@ -131,7 +132,7 @@ export function AuthProvider({ children }) {
   // Logout handler
   const logout = async () => {
     try {
-      await fetch('/api/auth/logout', {
+      await fetch(apiUrl('/api/auth/logout'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -149,7 +150,7 @@ export function AuthProvider({ children }) {
   // Role elevation / workspace clearance switcher
   const elevateRole = async (targetRole = 'ADVOCATE') => {
     try {
-      const response = await fetch('/api/auth/elevate-role', {
+      const response = await fetch(apiUrl('/api/auth/elevate-role'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -158,7 +159,7 @@ export function AuthProvider({ children }) {
         credentials: 'include',
         body: JSON.stringify({ role: targetRole }),
       });
-      const data = await response.json();
+      const data = await safeParseResponse(response);
       if (response.ok && data.user) {
         setUser(data.user);
         return { success: true, user: data.user, message: data.message };

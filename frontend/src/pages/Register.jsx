@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import InfoModal from '../components/InfoModal';
+import { apiUrl, safeParseResponse } from '../utils/api';
 import '../styles/Login.css';
 import '../styles/Register.css';
 
@@ -98,9 +99,9 @@ export default function Register() {
     let isMounted = true;
     async function checkHealth() {
       try {
-        const response = await fetch('/api/health');
+        const response = await fetch(apiUrl('/api/health'));
         if (response.ok) {
-          const data = await response.json();
+          const data = await safeParseResponse(response);
           if (isMounted) {
             const dbConnected = data.database?.connected;
             setBackendHealth({
