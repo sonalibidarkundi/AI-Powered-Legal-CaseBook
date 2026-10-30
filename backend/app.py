@@ -34,6 +34,7 @@ load_dotenv()
 
 # 2. Initialize Flask App
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 
 # 3. Secure Session Configuration
 is_secure_env = (os.getenv("FLASK_ENV") == "production") or (os.getenv("VERCEL") == "1")
@@ -81,8 +82,19 @@ DEBUG = os.getenv("FLASK_DEBUG", "1") == "1"
 # ============================================================================
 
 @app.route("/", methods=["GET"])
-@app.route("/api", methods=["GET"])
+@app.route("/api", methods=["GET", "POST", "OPTIONS"])
+@app.route("/api/", methods=["GET", "POST", "OPTIONS"])
 def index():
+    if request.method == "POST":
+        return jsonify({
+            "error": "The /api root endpoint does not accept POST requests directly. Please call specific sub-endpoints such as /api/auth/register or /api/auth/login.",
+            "code": "API_ROOT_NO_POST",
+            "endpoints": {
+                "health": "/api/health",
+                "login": "/api/auth/login",
+                "register": "/api/auth/register"
+            }
+        }), 400
     return jsonify({
         "service": "AI-Powered Advocate Legal CaseBook API",
         "stage": "Stage 4 - Secure Authentication & Role-Based Access Control",
@@ -471,7 +483,7 @@ def not_found(error):
 def method_not_allowed(error):
     return jsonify({
         "error": "Method Not Allowed",
-        "message": "The requested HTTP method is not supported by this API endpoint.",
+        "message": f"The HTTP {request.method} method is not supported by endpoint '{request.path}'.",
         "code": "METHOD_NOT_ALLOWED"
     }), 405
 

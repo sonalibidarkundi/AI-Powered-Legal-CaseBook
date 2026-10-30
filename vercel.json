@@ -4,17 +4,22 @@
   "outputDirectory": "dist",
   "functions": {
     "api/index.py": {
-      "includeFiles": "backend/**"
+      "includeFiles": "backend/**",
+      "maxDuration": 30
     }
   },
   "rewrites": [
     {
       "source": "/api",
-      "destination": "/api/index.py?path="
+      "destination": "/api/index?path="
     },
     {
-      "source": "/api/(.*)",
-      "destination": "/api/index.py?path=$1"
+      "source": "/api/",
+      "destination": "/api/index?path="
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "/api/index?path=:path*"
     },
     {
       "source": "/((?!api/).*)",
