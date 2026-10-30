@@ -47,9 +47,9 @@ export async function safeParseResponse(response) {
   if (response.status === 405) {
     return {
       error:
-        text && text !== 'Method Not Allowed'
+        text && text.trim() && text.trim() !== 'Method Not Allowed'
           ? text
-          : 'HTTP 405 Method Not Allowed: The API server rejected this request. Please verify Vercel Project Root Directory is set to the project root (not "frontend") and serverless rewrites are active.',
+          : 'HTTP 405 Method Not Allowed: The API server rejected this request. In Vercel Project Settings > General, ensure Root Directory is set to project root ("." or blank, NOT "frontend"), or set VITE_API_URL to your backend service URL.',
       code: 'METHOD_NOT_ALLOWED',
     };
   }

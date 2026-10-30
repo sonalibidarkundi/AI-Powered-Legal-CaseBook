@@ -46,7 +46,7 @@ class VercelPathMiddleware:
             if key in params:
                 raw_val = params[key][0] if params[key] else ""
                 # Ignore unexpanded template tokens
-                if raw_val != "$1":
+                if raw_val and not raw_val.startswith("$") and not raw_val.startswith(":"):
                     captured_path = raw_val
                 del params[key]
                 environ["QUERY_STRING"] = urllib.parse.urlencode(params, doseq=True)
